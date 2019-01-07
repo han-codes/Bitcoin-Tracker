@@ -15,6 +15,7 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTextField.delegate = self
         
 //        let userDefaults = UserDefaults.standard
 //        userDefaults.object(forKey: "Name") as? String
@@ -33,3 +34,10 @@ class MainVC: UIViewController {
 //    }
 }
 
+extension MainVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+}

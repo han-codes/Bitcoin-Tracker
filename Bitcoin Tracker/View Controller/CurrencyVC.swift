@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class CurrencyVC: UIViewController {
-
+    
     // Outlets
     @IBOutlet weak var greetingLbl: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
@@ -17,6 +19,8 @@ class CurrencyVC: UIViewController {
     // Variables
     let apiURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    var finalURLRequest = ""
+    var bitcoinPrice: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +31,63 @@ class CurrencyVC: UIViewController {
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
     }
-
+    
+    @IBAction func submitBtn(_ sender: Any) {
+        performSegue(withIdentifier: TO_CONVERTVC, sender: nil)
+    }
+    
+    // MARK: Request API
+    func getBitcoinData(url: String) {
+        Alamofire.request(url, method: .get)
+            .responseJSON { response in
+                if response.result.isSuccess {
+                    print("Sucess!")
+                    let bitcoinJSON : JSON = JSON(response.result.value!)
+                    self.updateBitcoinData(json: bitcoinJSON)
+                    
+                } else {
+                    print("Error: \(String(describing: response.result.error))")
+                }
+        }
+    }    
+    
+    // MARK: JSON Parsing
+    func updateBitcoinData(json : JSON) {
+        
+        if let tempResult = json["ask"].double {
+            bitcoinPrice = tempResult
+            
+            print("BITCOIN PRICE: \(bitcoinPrice)")
+        } else {
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == TO_CONVERTVC {
+            if let destinationVC = segue.destination as? ConvertVC {
+                if let bitcoinPrice = bitcoinPrice {
+                    destinationVC.bitcoinPrice = bitcoinPrice
+                }
+            }
+        }
+    }
 }
 
 extension CurrencyVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+        
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return currencyArray.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return currencyArray[row]
     }
     
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        finalURLRequest = apiURL + currencyArray[row]
+        getBitcoinData(url: finalURLRequest)
+    }
 }

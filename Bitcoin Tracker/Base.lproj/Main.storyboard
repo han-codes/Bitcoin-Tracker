@@ -103,9 +103,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="GZi-15-xxO">
                                 <rect key="frame" x="157.5" y="170" width="60" height="60"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NX-qs-uaB">
+                                <rect key="frame" x="163" y="564.5" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7vU-zA-0w3"/>
+                                    <action selector="submitBtn:" destination="epc-bQ-GQ2" eventType="touchUpInside" id="Rgu-QL-j4N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9NX-qs-uaB" firstAttribute="top" secondItem="hHH-Xr-6h7" secondAttribute="bottom" constant="25" id="7ME-qm-g1S"/>
                             <constraint firstItem="VZl-Mv-jaX" firstAttribute="centerX" secondItem="ldk-eR-7Sq" secondAttribute="centerX" id="8du-PS-ExR"/>
                             <constraint firstItem="GZi-15-xxO" firstAttribute="centerX" secondItem="ldk-eR-7Sq" secondAttribute="centerX" id="Byh-1K-zhf"/>
                             <constraint firstItem="CVE-1F-wzs" firstAttribute="top" secondItem="V77-2M-heS" secondAttribute="top" constant="65" id="FNe-Qw-AsT"/>
@@ -115,6 +124,7 @@
                             <constraint firstItem="CVE-1F-wzs" firstAttribute="centerX" secondItem="ldk-eR-7Sq" secondAttribute="centerX" id="h4H-Lw-gje"/>
                             <constraint firstItem="VZl-Mv-jaX" firstAttribute="centerX" secondItem="ldk-eR-7Sq" secondAttribute="centerX" id="kA1-gp-Uud"/>
                             <constraint firstItem="hHH-Xr-6h7" firstAttribute="top" secondItem="VZl-Mv-jaX" secondAttribute="bottom" constant="20" id="kRb-lQ-gc3"/>
+                            <constraint firstItem="9NX-qs-uaB" firstAttribute="centerX" secondItem="ldk-eR-7Sq" secondAttribute="centerX" id="wx9-c1-xkS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V77-2M-heS"/>
                     </view>
