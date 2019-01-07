@@ -10,11 +10,26 @@ import UIKit
 
 class MainVC: UIViewController {
 
+    // Outlets
+    @IBOutlet weak var nameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+//        let userDefaults = UserDefaults.standard
+//        userDefaults.object(forKey: "Name") as? String
     }
 
-
+    @IBAction func submitBtn(_ sender: Any) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(nameTextField.text, forKey: "Name")
+        
+        performSegue(withIdentifier: TO_CURRENCYVC, sender: nil)
+    }
+    
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        <#code#>
+//    }
 }
 
