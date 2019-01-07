@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		F3275A2C21E2CF0C0011A01E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3275A2B21E2CF0C0011A01E /* AppDelegate.swift */; };
-		F3275A2E21E2CF0C0011A01E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3275A2D21E2CF0C0011A01E /* ViewController.swift */; };
+		F3275A2E21E2CF0C0011A01E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3275A2D21E2CF0C0011A01E /* MainVC.swift */; };
 		F3275A3121E2CF0C0011A01E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3275A2F21E2CF0C0011A01E /* Main.storyboard */; };
 		F3275A3321E2CF0F0011A01E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3275A3221E2CF0F0011A01E /* Assets.xcassets */; };
 		F3275A3621E2CF0F0011A01E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3275A3421E2CF0F0011A01E /* LaunchScreen.storyboard */; };
+		F3275A4121E2EBA30011A01E /* ConvertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3275A4021E2EBA30011A01E /* ConvertVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F3275A2821E2CF0C0011A01E /* Bitcoin Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bitcoin Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3275A2B21E2CF0C0011A01E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3275A2D21E2CF0C0011A01E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3275A2D21E2CF0C0011A01E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		F3275A3021E2CF0C0011A01E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3275A3221E2CF0F0011A01E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3275A3521E2CF0F0011A01E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3275A3721E2CF0F0011A01E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3275A4021E2EBA30011A01E /* ConvertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,39 @@
 		F3275A2A21E2CF0C0011A01E /* Bitcoin Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				F3275A3D21E2EB650011A01E /* Model */,
+				F3275A3E21E2EB6D0011A01E /* View */,
+				F3275A3F21E2EB700011A01E /* View Controller */,
 				F3275A2B21E2CF0C0011A01E /* AppDelegate.swift */,
-				F3275A2D21E2CF0C0011A01E /* ViewController.swift */,
 				F3275A2F21E2CF0C0011A01E /* Main.storyboard */,
 				F3275A3221E2CF0F0011A01E /* Assets.xcassets */,
 				F3275A3421E2CF0F0011A01E /* LaunchScreen.storyboard */,
 				F3275A3721E2CF0F0011A01E /* Info.plist */,
 			);
 			path = "Bitcoin Tracker";
+			sourceTree = "<group>";
+		};
+		F3275A3D21E2EB650011A01E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F3275A3E21E2EB6D0011A01E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F3275A3F21E2EB700011A01E /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F3275A2D21E2CF0C0011A01E /* MainVC.swift */,
+				F3275A4021E2EBA30011A01E /* ConvertVC.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +162,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3275A2E21E2CF0C0011A01E /* ViewController.swift in Sources */,
+				F3275A2E21E2CF0C0011A01E /* MainVC.swift in Sources */,
 				F3275A2C21E2CF0C0011A01E /* AppDelegate.swift in Sources */,
+				F3275A4121E2EBA30011A01E /* ConvertVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

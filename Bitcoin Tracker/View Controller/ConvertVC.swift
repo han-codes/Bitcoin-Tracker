@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ConvertVC.swift
 //  Bitcoin Tracker
 //
 //  Created by Hannie Kim on 1/6/19.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConvertVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
 
-
 }
-
