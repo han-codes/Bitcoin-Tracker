@@ -19,12 +19,19 @@ class MainVC: UIViewController {
         
 //        let userDefaults = UserDefaults.standard
 //        userDefaults.object(forKey: "Name") as? String
-                
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
     }
     
-    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
-    @IBAction func submitBtn(_ sender: Any) {
+    @IBAction func submitBtn(_ sender: UIButton) {
+        sender.pulsate()
+        
         let userDefaults = UserDefaults.standard
         userDefaults.set(nameTextField.text, forKey: "Name")
         
@@ -39,6 +46,7 @@ class MainVC: UIViewController {
     }
     
     // TODO: Add a Tap Gesture to dismiss keyboard
+
     
 //
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

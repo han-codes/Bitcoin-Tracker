@@ -28,7 +28,8 @@ class CurrencyVC: UIViewController {
         super.viewDidLoad()
         
         let userDefaults = UserDefaults.standard
-        greetingLbl.text = userDefaults.object(forKey: "Name") as? String
+        
+        greetingLbl.text = "Hello \(userDefaults.object(forKey: "Name") as? String ?? "Anonymous")!"
         
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
@@ -50,7 +51,8 @@ class CurrencyVC: UIViewController {
     }
     
     
-    @IBAction func submitBtn(_ sender: Any) {
+    @IBAction func submitBtn(_ sender: UIButton) {
+        sender.pulsate()
         performSegue(withIdentifier: TO_CONVERTVC, sender: nil)
     }
     
@@ -59,7 +61,6 @@ class CurrencyVC: UIViewController {
         Alamofire.request(url, method: .get)
             .responseJSON { response in
                 if response.result.isSuccess {
-//                    print("Sucess!")
                     let bitcoinJSON : JSON = JSON(response.result.value!)
                     self.updateBitcoinData(json: bitcoinJSON)
                     

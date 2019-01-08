@@ -13,6 +13,7 @@
 		F3275A3121E2CF0C0011A01E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3275A2F21E2CF0C0011A01E /* Main.storyboard */; };
 		F3275A3321E2CF0F0011A01E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3275A3221E2CF0F0011A01E /* Assets.xcassets */; };
 		F3275A3621E2CF0F0011A01E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3275A3421E2CF0F0011A01E /* LaunchScreen.storyboard */; };
+		F32A2DB721E44BA100D60D06 /* UIButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A2DB621E44BA000D60D06 /* UIButtonExt.swift */; };
 		F3EFA02C21E2EFF600E846C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EFA02B21E2EFF600E846C6 /* Constants.swift */; };
 		F3EFA03221E2F42500E846C6 /* CurrencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EFA03121E2F42500E846C6 /* CurrencyVC.swift */; };
 		F3EFA03421E2F42D00E846C6 /* ConvertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EFA03321E2F42D00E846C6 /* ConvertVC.swift */; };
@@ -28,6 +29,7 @@
 		F3275A3221E2CF0F0011A01E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3275A3521E2CF0F0011A01E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3275A3721E2CF0F0011A01E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F32A2DB621E44BA000D60D06 /* UIButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExt.swift; sourceTree = "<group>"; };
 		F3EFA02B21E2EFF600E846C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F3EFA03121E2F42500E846C6 /* CurrencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyVC.swift; sourceTree = "<group>"; };
 		F3EFA03321E2F42D00E846C6 /* ConvertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertVC.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		F3275A2A21E2CF0C0011A01E /* Bitcoin Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				F32A2DB521E44B8D00D60D06 /* Extensions */,
 				F3EFA02A21E2EFE300E846C6 /* Utilities */,
 				F3275A3D21E2EB650011A01E /* Model */,
 				F3275A3E21E2EB6D0011A01E /* View */,
@@ -119,6 +122,14 @@
 				F3EFA03321E2F42D00E846C6 /* ConvertVC.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		F32A2DB521E44B8D00D60D06 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F32A2DB621E44BA000D60D06 /* UIButtonExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F3EFA02A21E2EFE300E846C6 /* Utilities */ = {
@@ -244,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3275A2E21E2CF0C0011A01E /* MainVC.swift in Sources */,
+				F32A2DB721E44BA100D60D06 /* UIButtonExt.swift in Sources */,
 				F3275A2C21E2CF0C0011A01E /* AppDelegate.swift in Sources */,
 				F3EFA03421E2F42D00E846C6 /* ConvertVC.swift in Sources */,
 				F3EFA02C21E2EFF600E846C6 /* Constants.swift in Sources */,
