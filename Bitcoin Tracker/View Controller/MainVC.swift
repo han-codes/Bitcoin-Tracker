@@ -21,10 +21,35 @@ class MainVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willResign), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func willEnterForeground() {
+        print("will enter FOREGROUND MainVC")
+    }
+    
+    @objc func willResign() {
+        print("will RESIGN in MAINVC")
+//        for controller in self.navigationController!.viewControllers as Array {
+//            if controller.isKind(of: CurrencyVC.self) {
+//                self.navigationController!.popToViewController(controller, animated: true)
+//                break
+//            }
+//        }
+//        performSegue(withIdentifier: TO_CURRENCYVC, sender: nil)
+    }
+    
+    @objc func willTerminate() {
+        print("will TERMINATE in MAINVC")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.removeObserver(self)
+        
     }
     
     @objc func dismissKeyboard() {

@@ -33,17 +33,13 @@ class ConvertVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9490196078, green: 0.6196078431, blue: 0.1960784314, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    // my selector that was defined above
+        
     @objc func willEnterForeground() {
-        // do stuff
-        print("🙌🏻 ENTERING THE FOREGROUND TO DISMISS VIEW CONTROLLER")
         navigationController?.popViewController(animated: true)
         
     }

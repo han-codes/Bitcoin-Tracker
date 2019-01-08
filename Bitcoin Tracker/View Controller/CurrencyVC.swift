@@ -38,6 +38,23 @@ class CurrencyVC: UIViewController {
         finalURLRequest = apiURL + selectedCurrency
         getBitcoinData(url: finalURLRequest)
         selectedCurrency = currencySymbol[0]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func willEnterForeground() {
+        print("ENTERING FOREGROUND CURRENCYVC")
+    }
+    
+    @objc func willTerminate() {
+        print("ENTERING TERMINATE")
+//        for controller in self.navigationController!.viewControllers as Array {
+//            if controller.isKind(of: CurrencyVC.self) {
+//                self.navigationController!.popToViewController(controller, animated: true)
+//                break
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +62,8 @@ class CurrencyVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9490196078, green: 0.6196078431, blue: 0.1960784314, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func submitBtn(_ sender: UIButton) {
@@ -74,7 +93,7 @@ class CurrencyVC: UIViewController {
         } else {
             navigationItem.title = "Error requesting bitcoin, try again."
         }
-    }
+    }        
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == TO_CONVERTVC {
@@ -104,10 +123,6 @@ extension CurrencyVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         finalURLRequest = apiURL + currencyArray[row]
         getBitcoinData(url: finalURLRequest)
-        if selectedCurrency == "" {
-            print("EMPTY YO")
-        }
         selectedCurrency = currencySymbol[row]
-        print("SELECTED CURRENCY: \(selectedCurrency)")
     }
 }
