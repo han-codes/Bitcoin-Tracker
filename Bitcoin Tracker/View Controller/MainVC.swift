@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainVC.swift
 //  Bitcoin Tracker
 //
 //  Created by Hannie Kim on 1/6/19.
@@ -9,26 +9,28 @@
 import UIKit
 
 class MainVC: UIViewController {
-
+    
     // Outlets
     @IBOutlet weak var nameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.delegate = self
         
-//        let userDefaults = UserDefaults.standard
-//        userDefaults.object(forKey: "Name") as? String
+        nameTextField.delegate = self
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-
+    
     @IBAction func submitBtn(_ sender: UIButton) {
         sender.pulsate()
         
@@ -44,20 +46,11 @@ class MainVC: UIViewController {
             performSegue(withIdentifier: TO_CURRENCYVC, sender: nil)
         }
     }
-    
-    // TODO: Add a Tap Gesture to dismiss keyboard
-
-    
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        <#code#>
-//    }
 }
 
 extension MainVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
         return true
     }
 }

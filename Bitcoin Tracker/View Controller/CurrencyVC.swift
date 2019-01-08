@@ -19,7 +19,7 @@ class CurrencyVC: UIViewController {
     // Variables
     let apiURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD","BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
-    let currencySymbol = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
+    let currencySymbol = ["A$", "R$", "C$", "¥", "€", "£", "HK$", "Rp", "₪", "₹", "¥", "Mex$", "kr", "$", "zł", "lei", "₽", "kr", "S$", "$", "R"]
     var selectedCurrency = "AUD"
     var finalURLRequest = ""
     var bitcoinPrice: Double?
@@ -33,23 +33,19 @@ class CurrencyVC: UIViewController {
         
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
-    
-        // if currency is set to default AUD
+        
+        // set default currency to AUD
         finalURLRequest = apiURL + selectedCurrency
         getBitcoinData(url: finalURLRequest)
         selectedCurrency = currencySymbol[0]
     }
     
-    @objc func closeActivityController()  {
-        
-        
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Choose your Currency"
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9490196078, green: 0.6196078431, blue: 0.1960784314, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
-    
-    @objc func openactivity()  {
-        
-        //view should reload the data.
-    }
-    
     
     @IBAction func submitBtn(_ sender: UIButton) {
         sender.pulsate()
@@ -73,11 +69,10 @@ class CurrencyVC: UIViewController {
     // MARK: JSON Parsing
     func updateBitcoinData(json : JSON) {
         
-        if let tempResult = json["ask"].double {
-            bitcoinPrice = tempResult
-            
-            print("BITCOIN PRICE: \(bitcoinPrice)")
+        if let apiResult = json["ask"].double {
+            bitcoinPrice = apiResult
         } else {
+            navigationItem.title = "Error requesting bitcoin, try again."
         }
     }
     
@@ -97,7 +92,7 @@ extension CurrencyVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-        
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return currencyArray.count
     }

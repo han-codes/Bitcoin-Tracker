@@ -9,7 +9,7 @@
 import UIKit
 
 class ConvertVC: UIViewController {
-
+    
     // Outlets
     @IBOutlet weak var currencySymbolLbl: UILabel!
     @IBOutlet weak var bitcoinValueLbl: UILabel!
@@ -20,15 +20,24 @@ class ConvertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.title = "Bitcoin Value"
+        
         guard let bitcoinPrice = bitcoinPrice else { return }
         bitcoinValueLbl.text = ("\(bitcoinPrice)")
-        currencySymbolLbl.text = selectedCurrency
-        print("BITCOIN PRICE IN COVERTVC \(bitcoinPrice)")
+        currencySymbolLbl.text = selectedCurrency        
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        var foregroundObserver = NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9490196078, green: 0.6196078431, blue: 0.1960784314, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // my selector that was defined above
@@ -37,33 +46,5 @@ class ConvertVC: UIViewController {
         print("🙌🏻 ENTERING THE FOREGROUND TO DISMISS VIEW CONTROLLER")
         navigationController?.popViewController(animated: true)
         
-    }
-//
-//    @objc func didBecomeActive() {
-//        print("🙌🏻 BECOMING ACTIVE YO")
-//
-////        dismiss(animated: true, completion: nil)
-//    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("VIEWDIDDISAPPEAR")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-//        let currencyVC = storyboard?.instantiateViewController(withIdentifier: "Currency") as! CurrencyVC
-//        present(currencyVC, animated: true, completion: nil)
-        print("VIEWWILLAPPEAR)")
-    
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("ViewWillAppear")
-        
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-//        let currencyVC = storyboard?.instantiateViewController(withIdentifier: "Currency") as! CurrencyVC
-//        present(currencyVC, animated: true, completion: nil)
-        NotificationCenter.default.removeObserver(self)
-        print("VIEWILLDISAPPEAR")
     }
 }
