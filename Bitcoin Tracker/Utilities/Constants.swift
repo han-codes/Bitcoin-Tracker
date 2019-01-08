@@ -11,3 +11,6 @@ import Foundation
 // SEGUES
 let TO_CURRENCYVC = "toCurrencyVC"
 let TO_CONVERTVC = "toConvertVC"
+
+// Storyboard ID
+let CURRENCY_STORYBOARD = "Currency"

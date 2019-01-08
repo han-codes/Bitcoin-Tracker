@@ -18,7 +18,9 @@ class CurrencyVC: UIViewController {
     
     // Variables
     let apiURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
-    let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencyArray = ["AUD","BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencySymbol = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
+    var selectedCurrency = "AUD"
     var finalURLRequest = ""
     var bitcoinPrice: Double?
     
@@ -30,7 +32,23 @@ class CurrencyVC: UIViewController {
         
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
+    
+        // if currency is set to default AUD
+        finalURLRequest = apiURL + selectedCurrency
+        getBitcoinData(url: finalURLRequest)
+        selectedCurrency = currencySymbol[0]
     }
+    
+    @objc func closeActivityController()  {
+        
+        
+    }
+    
+    @objc func openactivity()  {
+        
+        //view should reload the data.
+    }
+    
     
     @IBAction func submitBtn(_ sender: Any) {
         performSegue(withIdentifier: TO_CONVERTVC, sender: nil)
@@ -41,7 +59,7 @@ class CurrencyVC: UIViewController {
         Alamofire.request(url, method: .get)
             .responseJSON { response in
                 if response.result.isSuccess {
-                    print("Sucess!")
+//                    print("Sucess!")
                     let bitcoinJSON : JSON = JSON(response.result.value!)
                     self.updateBitcoinData(json: bitcoinJSON)
                     
@@ -67,6 +85,7 @@ class CurrencyVC: UIViewController {
             if let destinationVC = segue.destination as? ConvertVC {
                 if let bitcoinPrice = bitcoinPrice {
                     destinationVC.bitcoinPrice = bitcoinPrice
+                    destinationVC.selectedCurrency = selectedCurrency
                 }
             }
         }
@@ -89,5 +108,10 @@ extension CurrencyVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         finalURLRequest = apiURL + currencyArray[row]
         getBitcoinData(url: finalURLRequest)
+        if selectedCurrency == "" {
+            print("EMPTY YO")
+        }
+        selectedCurrency = currencySymbol[row]
+        print("SELECTED CURRENCY: \(selectedCurrency)")
     }
 }

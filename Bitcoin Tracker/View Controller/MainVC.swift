@@ -19,14 +19,26 @@ class MainVC: UIViewController {
         
 //        let userDefaults = UserDefaults.standard
 //        userDefaults.object(forKey: "Name") as? String
+                
     }
+    
+    
 
     @IBAction func submitBtn(_ sender: Any) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(nameTextField.text, forKey: "Name")
         
-        performSegue(withIdentifier: TO_CURRENCYVC, sender: nil)
+        if nameTextField.text == "" {
+            let ac = UIAlertController(title: "Add Name", message: "Make sure to add your name in the textfield so we may greet you better.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: TO_CURRENCYVC, sender: nil)
+        }
     }
+    
+    // TODO: Add a Tap Gesture to dismiss keyboard
     
 //
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
